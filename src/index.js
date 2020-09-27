@@ -934,9 +934,9 @@ function getCoords() {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getLocation);
 }
-function sendFeedback() {
-  alert(`Sorry the feedback form is not set up yet😖`);
-}
+//function sendFeedback() {
+//prompt(`Please enter your feedback below and click "ok" to submit`);
+//}
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = formatDate(new Date());
 

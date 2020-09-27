@@ -190,7 +190,6 @@ input {
 
 .feedback {
   font-size: calc(0.8em + 0.3vw);
-  padding: 10 px 15 px;
   display: block;
   margin: 0 auto;
   background-color: #005a8e;
@@ -199,10 +198,13 @@ input {
   border-radius: 3px;
   box-shadow: #001629 0 0 10px;
   transition: 200ms ease-in-out;
+  width: 120px;
+  text-align: center;
 }
 .feedback:hover {
   background-color: #fd7e4a;
   color: white;
+  text-decoration: none;
 }
 .footer {
   font-size: calc(1em + 0.2vw);
