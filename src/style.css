@@ -210,10 +210,12 @@ input {
   margin: 10px 0 5px 0;
   color: #001629;
 }
-.linkedin {
+.linkedin,
+.code-source {
   color: #001629;
 }
-.linkedin:hover {
+.linkedin:hover,
+.code-source:hover {
   color: white;
 }
 #today-description,
