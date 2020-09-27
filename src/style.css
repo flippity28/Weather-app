@@ -198,7 +198,8 @@ input {
   border-radius: 3px;
   box-shadow: #001629 0 0 10px;
   transition: 200ms ease-in-out;
-  width: 120px;
+  width: 150px;
+  padding: 8px;
   text-align: center;
 }
 .feedback:hover {
