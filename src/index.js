@@ -79,7 +79,7 @@ function getCityCoords(response) {
   let apiUrlTwo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,hourly&appid=${apiKey}&units=${units}`;
   axios.get(apiUrlTwo).then(showWeatherForecast);
 }
-function changePhoto() {
+function changePhoto(event) {
   event.preventDefault();
   let location = document.querySelector("#location-search").value;
   let locationLower = location.trim().toLowerCase();
@@ -100,6 +100,10 @@ function changePhoto() {
   } else {
     document.getElementById("photo").src = "images/sky.jpg";
   }
+}
+function changePhotoDefault(event) {
+  event.preventDefault();
+  document.getElementById("photo").src = "images/sky.jpg";
 }
 function changeFahrenheit() {
   units = "imperial";
@@ -990,3 +994,4 @@ celsiusButton.addEventListener("click", changeCelsius);
 
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getCoords);
+currentLocationButton.addEventListener("click", changePhotoDefault);
