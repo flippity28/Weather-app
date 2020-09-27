@@ -67,7 +67,7 @@ function errorFunction() {
   let location = document.querySelector("#location-search").value;
   if (location.length > 0) {
     alert(
-      `Sorry we do not have weather data for ${location}, please try another city`
+      `Sorry we do not have weather data for ${location}, please try searching for another city`
     );
   } else {
     alert(`Please search for a location to see the weather forecast`);
@@ -101,7 +101,6 @@ function changePhoto() {
     document.getElementById("photo").src = "images/sky.jpg";
   }
 }
-
 function changeFahrenheit() {
   units = "imperial";
   let unit = document.querySelector(".unit");
@@ -160,7 +159,6 @@ function changeCelsius() {
   let feelsLikeUnit = document.querySelector("#feels-like-unit");
   feelsLikeUnit.innerHTML = ` °C`;
 }
-
 function showCurrentWeather(response) {
   console.log(response);
   let currentTemp = Math.round(response.data.main.temp);

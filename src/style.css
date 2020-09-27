@@ -173,6 +173,7 @@ input {
 }
 .more-info:hover {
   color: #fd7e4a;
+  text-decoration: none;
 }
 .btn-group {
   color: white !important;
@@ -208,7 +209,7 @@ input {
   text-decoration: none;
 }
 .footer {
-  font-size: calc(1em + 0.2vw);
+  font-size: calc(0.5em + 0.5vw);
   text-align: center;
   margin: 10px 0 5px 0;
   color: #001629;
@@ -220,6 +221,7 @@ input {
 .linkedin:hover,
 .code-source:hover {
   color: white;
+  text-decoration: none;
 }
 #today-description,
 #current-weather-description {
