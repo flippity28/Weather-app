@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forecast</title>
+    
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/5f782bf1bd.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&family=Russo+One&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+ 
+    <link rel="stylesheet" href="src/style.css" />
+</head>
+    <body>
+    <div class="container-sm">
+      <div class="card text-white header-card">
+        <img src="images/sky.jpg" class="card-img header-img" alt="image" id="photo"/>
+        <div class="card-img-overlay">
+          <h1 class="card-title-main">Weather Forecast</h1>
+         <div class="row location-search">
+           <div class="col-3"> </div>
+          <form class=" form-group location-search-form col-sm-6">
+            <input type="text" id = "location-search" placeholder="Type a location" autofocus="on" autocomplete="off" />
+            <input type="submit" id = "search-button" value= "Search"/>
+          <button class="my-location text-left" id="current-location">
+            <i class="fas fa-map-marker-alt"></i>
+          </button></form>
+        </div>
+      </div>
+      </div>
+      <div class="card-deck row-cols-1">
+        <div class="card card-today col-sm-6">
+          <div class="card-body-one">
+            <h5 class="card-title-one" id = "city">London</h5>
+            <h6 class="time-and-date" id="current-date">12:27 Thursday 3<sup>rd</sup> September</h6>
+            <div  class="card-text row">
+              <i class="fas fa-info today-symbol col-6 justify-content-center" id="today-icon"></i>
+                <p class="temp card-text col-6 justify-content-center"> <span class="current-temp">12</span><span class="unit"> °C</span>
+                  
+                </p>
+            </div><div class="weather-description row col-12 justify-content-center" id="current-weather-description"> Cloudy</div>
+          </div>
+        </div>
+        <div class="card card-today col-sm-6">
+          <div class="card-body-two">
+            <h5 class="card-title-two">Today's Forecast</h5>
+            <p class="card-text todays-forecast">
+                <i class="fas fa-info-circle"></i>  <span id="today-description">Cloudy with some showers</span> </br>
+                <i class="fas fa-temperature-high"></i> Highs of <span id="today-high">17</span><span id="today-high-unit"> °C</span> </br>
+                <i class="fas fa-temperature-low"></i> Lows of <span id= "today-low">10</span><span id="today-low-unit"> °C</span></br>
+                <i class="fas fa-umbrella"></i> <span id="today-rain-percent">50</span>% chance of precipitation </br>
+                <i class="fas fa-sun"></i> Sunrise at <span id="today-sunrise">05:55</span> </br>
+                <i class="fas fa-moon"></i> Sunset at <span id= "today-sunset">20:40 </span>
+            </p>
+          </div>
+        </div>
+      </div>
+       <div class="card-deck row-cols-1">
+        <div class="card five-day col-sm-6">
+          <div class="card-body-one">
+            <h5 class="card-title-three">
+              <div class=day-link id="day-one">Friday 4<sup>th</sup>
+              </div>
+            </h5>
+                <div  class="card-text">
+                  <i class="fas fa-cloud-rain five-day-symbol" id="day-one-icon"></i></br>
+                    <span class="five-day-temp"><span id="day-one-high">15</span> / <span id="day-one-low">10</span><span id="day-one-unit"> °C</span></span> 
+                </div>        
+          </div>
+        </div>
+        <div class="card five-day col-sm-6">
+          <div class="card-body-one">
+            <h5 class="card-title-three">
+              <div class="day-link" id="day-two">Saturday 5<sup>th</sup></div></h5>
+                <div  class="card-text">
+                  <i class="fas fa-cloud five-day-symbol" id="day-two-icon"></i></br>
+                  <span class="five-day-temp"><span id="day-two-high">17</span> / <span id="day-two-low">12</span><span id="day-two-unit"> °C</span></span> 
+                </div>
+          </div>
+        </div>
+        <div class="card five-day col-sm-6">
+          <div class="card-body-one">
+            <h5 class="card-title-three">
+              <div class="day-link" id="day-three">Sunday 6<sup>th</sup></div></h5>
+                <div  class="card-text">
+                  <i class="fas fa-cloud-sun five-day-symbol" id="day-three-icon"></i></br>
+                    <span class="five-day-temp"><span id= "day-three-high">18</span> / <span id="day-three-low">13</span><span id="day-three-unit"> °C</span></span> 
+                </div>        
+          </div>
+        </div>
+        <div class="card five-day col-sm-6">
+          <div class="card-body-one">
+            <h5 class="card-title-three">
+              <div class="day-link" id="day-four">Monday 7<sup>th</sup></div></h5>
+                <div  class="card-text">
+                  <i class="fas fa-sun five-day-symbol" id="day-four-icon"></i></br>
+                    <span class="five-day-temp"><span id="day-four-high">20</span> / <span id="day-four-low">14</span><span id="day-four-unit"> °C</span></span> 
+                </div>     
+          </div>  
+        </div>  
+        <div class="card five-day col-sm-6">
+          <div class="card-body-one">
+            <h5 class="card-title-three">
+              <div  class="day-link" id="day-five"> Tuesday 8<sup>th</sup></div></h5>
+                <div  class="card-text">
+                  <i class="fas fa-smog five-day-symbol" id="day-five-icon"></i></br>
+                    <span class="five-day-temp"><span id="day-five-high">18</span> / <span id="day-five-low">12</span><span id="day-five-unit"> °C</span></span> 
+                </div>            
+          </div>  
+        </div>
+      </div>
+      <a id = "more-info-link" class="more-info" href="https://openweathermap.org/find?q=london" target="_blank">Click for more information</a>
+
+      <div class="btn-group row text-center" role="group" aria-label="Basic example">
+        <button type="button" class="btn celsius">Celsius</button>
+        <button type="button" class="btn fahrenheit">Fahrenheit</button>
+            </div>
+   
+      <button class="feedback" id="feedback-button">Feedback </button>
+      <p class="footer"> Coded by 
+        <a href="https://www.linkedin.com/in/felicity-child-13b00182/" class="linkedin">Flip</a> 
+      </p>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
