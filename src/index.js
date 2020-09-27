@@ -126,6 +126,8 @@ function changeFahrenheit() {
   } else {
     document.querySelector("#current-location").click();
   }
+  let speedUnit = document.querySelector("#speed-unit");
+  speedUnit.innerHTML = `mph`;
 }
 function changeCelsius() {
   units = "metric";
@@ -151,6 +153,8 @@ function changeCelsius() {
   } else {
     document.querySelector("#current-location").click();
   }
+  let speedUnit = document.querySelector("#speed-unit");
+  speedUnit.innerHTML = `m/s`;
 }
 
 function showCurrentWeather(response) {
@@ -303,6 +307,9 @@ function showWeatherForecast(response) {
   } else {
     todayRainChance.innerHTML = `0`;
   }
+  let todayWindspeed = Math.round(response.data.daily[0].wind_speed);
+  let todayWind = document.querySelector("#today-windspeed");
+  todayWind.innerHTML = `${todayWindspeed}`;
   let todaySunriseUnix = response.data.daily[0].sunrise;
   let timeSunrise = new Date(todaySunriseUnix * 1000);
   let hoursSunrise = addZero(timeSunrise.getHours());
@@ -934,9 +941,7 @@ function getCoords() {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getLocation);
 }
-//function sendFeedback() {
-//prompt(`Please enter your feedback below and click "ok" to submit`);
-//}
+
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = formatDate(new Date());
 
@@ -980,6 +985,3 @@ celsiusButton.addEventListener("click", changeCelsius);
 
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getCoords);
-
-let feedbackButton = document.querySelector("#feedback-button");
-feedbackButton.addEventListener("click", sendFeedback);
