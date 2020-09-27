@@ -128,6 +128,8 @@ function changeFahrenheit() {
   }
   let speedUnit = document.querySelector("#speed-unit");
   speedUnit.innerHTML = `mph`;
+  let feelsLikeUnit = document.querySelector("#feels-like-unit");
+  feelsLikeUnit.innerHTML = ` °F`;
 }
 function changeCelsius() {
   units = "metric";
@@ -155,11 +157,13 @@ function changeCelsius() {
   }
   let speedUnit = document.querySelector("#speed-unit");
   speedUnit.innerHTML = `m/s`;
+  let feelsLikeUnit = document.querySelector("#feels-like-unit");
+  feelsLikeUnit.innerHTML = ` °C`;
 }
 
 function showCurrentWeather(response) {
   console.log(response);
-  let currentTemp = Math.floor(response.data.main.temp);
+  let currentTemp = Math.round(response.data.main.temp);
   let temp = document.querySelector(".current-temp");
   let currentWeatherDescription = response.data.weather[0].description;
   let description = document.querySelector("#current-weather-description");
@@ -174,6 +178,9 @@ function showCurrentWeather(response) {
     "href",
     `https://openweathermap.org/find?q=${currentLocation}`
   );
+  let feelsLikeTemp = document.querySelector("#feels-like-temp");
+  let todayFeelsLikeTemp = Math.round(response.data.main.feels_like);
+  feelsLikeTemp.innerHTML = `${todayFeelsLikeTemp}`;
   let todayWeatherId = response.data.weather[0].id;
   let todayWeatherIcon = document.querySelector("#today-icon");
   if (
