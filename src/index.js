@@ -124,6 +124,36 @@ function changeFahrenheit() {
   let dayOneHigh = document.querySelector("#day-one-high");
   let fahrenheitDayOneHigh = (celsiusDayOneHigh * 9) / 5 + 32;
   dayOneHigh.innerHTML = Math.round(fahrenheitDayOneHigh);
+  let dayOneLow = document.querySelector("#day-one-low");
+  let fahrenheitDayOneLow = (celsiusDayOneLow * 9) / 5 + 32;
+  dayOneLow.innerHTML = Math.round(fahrenheitDayOneLow);
+  let dayTwoHigh = document.querySelector("#day-two-high");
+  let fahrenheitDayTwoHigh = (celsiusDayTwoHigh * 9) / 5 + 32;
+  dayTwoHigh.innerHTML = Math.round(fahrenheitDayTwoHigh);
+  let dayTwoLow = document.querySelector("#day-two-low");
+  let fahrenheitDayTwoLow = (celsiusDayTwoLow * 9) / 5 + 32;
+  dayTwoLow.innerHTML = Math.round(fahrenheitDayTwoLow);
+  let dayThreeHigh = document.querySelector("#day-three-high");
+  let fahrenheitDayThreeHigh = (celsiusDayThreeHigh * 9) / 5 + 32;
+  dayThreeHigh.innerHTML = Math.round(fahrenheitDayThreeHigh);
+  let dayThreeLow = document.querySelector("#day-three-low");
+  let fahrenheitDayThreeLow = (celsiusDayThreeLow * 9) / 5 + 32;
+  dayThreeLow.innerHTML = Math.round(fahrenheitDayThreeLow);
+  let dayFourHigh = document.querySelector("#day-four-high");
+  let fahrenheitDayFourHigh = (celsiusDayFourHigh * 9) / 5 + 32;
+  dayFourHigh.innerHTML = Math.round(fahrenheitDayFourHigh);
+  let dayFourLow = document.querySelector("#day-four-low");
+  let fahrenheitDayFourLow = (celsiusDayFourLow * 9) / 5 + 32;
+  dayFourLow.innerHTML = Math.round(fahrenheitDayFourLow);
+  let dayFiveHigh = document.querySelector("#day-five-high");
+  let fahrenheitDayFiveHigh = (celsiusDayFiveHigh * 9) / 5 + 32;
+  dayFiveHigh.innerHTML = Math.round(fahrenheitDayFiveHigh);
+  let dayFiveLow = document.querySelector("#day-five-low");
+  let fahrenheitDayFiveLow = (celsiusDayFiveLow * 9) / 5 + 32;
+  dayFiveLow.innerHTML = Math.round(fahrenheitDayFiveLow);
+  let feelsLikeTemp = document.querySelector("#feels-like-temp");
+  let fahrenheitFeelsLikeTemp = (celsiusFeelsLikeTemp * 9) / 5 + 32;
+  feelsLikeTemp.innerHTML = Math.round(fahrenheitFeelsLikeTemp);
 }
 function changeCelsius() {
   let unit = document.querySelectorAll(".unit");
@@ -138,6 +168,29 @@ function changeCelsius() {
   todayHigh.innerHTML = Math.round(celsiusTodayHigh);
   let todayLow = document.querySelector("#today-low");
   todayLow.innerHTML = Math.round(celsiusTodayLow);
+
+  let dayOneHigh = document.querySelector("#day-one-high");
+  dayOneHigh.innerHTML = Math.round(celsiusDayOneHigh);
+  let dayOneLow = document.querySelector("#day-one-low");
+  dayOneLow.innerHTML = Math.round(celsiusDayOneLow);
+  let dayTwoHigh = document.querySelector("#day-two-high");
+  dayTwoHigh.innerHTML = Math.round(celsiusDayTwoHigh);
+  let dayTwoLow = document.querySelector("#day-two-low");
+  dayTwoLow.innerHTML = Math.round(celsiusDayTwoLow);
+  let dayThreeHigh = document.querySelector("#day-three-high");
+  dayThreeHigh.innerHTML = Math.round(celsiusDayThreeHigh);
+  let dayThreeLow = document.querySelector("#day-three-low");
+  dayThreeLow.innerHTML = Math.round(celsiusDayThreeLow);
+  let dayFourHigh = document.querySelector("#day-four-high");
+  dayFourHigh.innerHTML = Math.round(celsiusDayFourHigh);
+  let dayFourLow = document.querySelector("#day-four-low");
+  dayFourLow.innerHTML = Math.round(celsiusDayFourLow);
+  let dayFiveHigh = document.querySelector("#day-five-high");
+  dayFiveHigh.innerHTML = Math.round(celsiusDayFiveHigh);
+  let dayFiveLow = document.querySelector("#day-five-low");
+  dayFiveLow.innerHTML = Math.round(celsiusDayFiveLow);
+  let feelsLikeTemp = document.querySelector("#feels-like-temp");
+  feelsLikeTemp.innerHTML = Math.round(celsiusFeelsLikeTemp);
 }
 function showCurrentWeather(response) {
   console.log(response);
@@ -157,6 +210,7 @@ function showCurrentWeather(response) {
     "href",
     `https://openweathermap.org/find?q=${currentLocation}`
   );
+  celsiusFeelsLikeTemp = response.data.main.feels_like;
   let feelsLikeTemp = document.querySelector("#feels-like-temp");
   let todayFeelsLikeTemp = Math.round(response.data.main.feels_like);
   feelsLikeTemp.innerHTML = `${todayFeelsLikeTemp}`;
@@ -295,7 +349,7 @@ function showWeatherForecast(response) {
   } else {
     todayRainChance.innerHTML = `0`;
   }
-  let todayWindspeed = Math.round(response.data.daily[0].wind_speed);
+  let todayWindspeed = Math.round(response.data.daily[0].wind_speed * 3.6);
   let todayWind = document.querySelector("#today-windspeed");
   todayWind.innerHTML = `${todayWindspeed}`;
   let todaySunriseUnix = response.data.daily[0].sunrise;
@@ -314,6 +368,7 @@ function showWeatherForecast(response) {
   let dayOneHighTemp = Math.round(response.data.daily[1].temp.max);
   let dayOneHigh = document.querySelector("#day-one-high");
   dayOneHigh.innerHTML = `${dayOneHighTemp}`;
+  celsiusDayOneLow = response.data.daily[1].temp.min;
   let dayOneLowTemp = Math.round(response.data.daily[1].temp.min);
   let dayOneLow = document.querySelector("#day-one-low");
   dayOneLow.innerHTML = `${dayOneLowTemp}`;
@@ -431,7 +486,8 @@ function showWeatherForecast(response) {
       "fa-snowflake"
     );
   }
-
+  celsiusDayTwoHigh = response.data.daily[2].temp.max;
+  celsiusDayTwoLow = response.data.daily[2].temp.min;
   let dayTwoHighTemp = Math.round(response.data.daily[2].temp.max);
   let dayTwoHigh = document.querySelector("#day-two-high");
   dayTwoHigh.innerHTML = `${dayTwoHighTemp}`;
@@ -552,7 +608,8 @@ function showWeatherForecast(response) {
       "fa-snowflake"
     );
   }
-
+  celsiusDayThreeHigh = response.data.daily[3].temp.max;
+  celsiusDayThreeLow = response.data.daily[3].temp.min;
   let dayThreeHighTemp = Math.round(response.data.daily[3].temp.max);
   let dayThreeHigh = document.querySelector("#day-three-high");
   dayThreeHigh.innerHTML = `${dayThreeHighTemp}`;
@@ -673,7 +730,8 @@ function showWeatherForecast(response) {
       "fa-snowflake"
     );
   }
-
+  celsiusDayFourHigh = response.data.daily[4].temp.max;
+  celsiusDayFourLow = response.data.daily[4].temp.min;
   let dayFourHighTemp = Math.round(response.data.daily[4].temp.max);
   let dayFourHigh = document.querySelector("#day-four-high");
   dayFourHigh.innerHTML = `${dayFourHighTemp}`;
@@ -794,10 +852,11 @@ function showWeatherForecast(response) {
       "fa-snowflake"
     );
   }
-
+  celsiusDayFiveHigh = response.data.daily[5].temp.max;
   let dayFiveHighTemp = Math.round(response.data.daily[5].temp.max);
   let dayFiveHigh = document.querySelector("#day-five-high");
   dayFiveHigh.innerHTML = `${dayFiveHighTemp}`;
+  celsiusDayFiveLow = response.data.daily[5].temp.min;
   let dayFiveLowTemp = Math.round(response.data.daily[5].temp.min);
   let dayFiveLow = document.querySelector("#day-five-low");
   dayFiveLow.innerHTML = `${dayFiveLowTemp}`;
@@ -933,6 +992,16 @@ let celsiusTemp = null;
 let celsiusTodayHigh = null;
 let celsiusTodayLow = null;
 let celsiusDayOneHigh = null;
+let celsiusDayOneLow = null;
+let celsiusDayTwoHigh = null;
+let celsiusDayTwoLow = null;
+let celsiusDayThreeHigh = null;
+let celsiusDayThreeLow = null;
+let celsiusDayFourHigh = null;
+let celsiusDayFourLow = null;
+let celsiusDayFiveHigh = null;
+let celsiusDayFiveLow = null;
+let celsiusFeelsLikeTemp = null;
 
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = formatDate(new Date());
