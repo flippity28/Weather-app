@@ -106,41 +106,38 @@ function changePhotoDefault(event) {
   document.getElementById("photo").src = "images/sky.jpg";
 }
 function changeFahrenheit() {
-  //let unit = document.querySelectorAll(".unit");
-  //foreach((unit.innerHTML = ` °F`));
+  let unit = document.querySelectorAll(".unit");
+
+  let i;
+  for (i = 0; i < unit.length; i++) {
+    unit[i].innerHTML = ` °F`;
+  }
   let currentTemp = document.querySelector(".current-temp");
   let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
   currentTemp.innerHTML = Math.round(fahrenheitTemp);
-  //temp.innerHTML = `${currentTemp}`;
-  // let todayLowUnit = document.querySelector("#today-low-unit");
-  //todayLowUnit.innerHTML = ` °F`;
-  //let todayHighUnit = document.querySelector("#today-high-unit");
-  //todayHighUnit.innerHTML = ` °F`;
-  //let dayOneUnit = document.querySelector("#day-one-unit");
-  //dayOneUnit.innerHTML = ` °F`;
-  //let dayTwoUnit = document.querySelector("#day-two-unit");
-  //dayTwoUnit.innerHTML = ` °F`;
-  //let dayThreeUnit = document.querySelector("#day-three-unit");
-  //dayThreeUnit.innerHTML = ` °F`;
-  //let dayFourUnit = document.querySelector("#day-four-unit");
-  //dayFourUnit.innerHTML = ` °F`;
-  //let dayFiveUnit = document.querySelector("#day-five-unit");
-  //dayFiveUnit.innerHTML = ` °F`;
-  //let location = document.querySelector("#location-search").value;
-  //if (location.length > 0) {
-  //document.querySelector("#search-button").click();
-  //} else {
-  //document.querySelector("#current-location").click();
-  //}
-  //let speedUnit = document.querySelector("#speed-unit");
-  //speedUnit.innerHTML = `mph`;
-  //let feelsLikeUnit = document.querySelector("#feels-like-unit");
-  //feelsLikeUnit.innerHTML = ` °F`;
+  let todayHigh = document.querySelector("#today-high");
+  let fahrenheitTodayHigh = (celsiusTodayHigh * 9) / 5 + 32;
+  todayHigh.innerHTML = Math.round(fahrenheitTodayHigh);
+  let todayLow = document.querySelector("#today-low");
+  let fahrenheitTodayLow = (celsiusTodayLow * 9) / 5 + 32;
+  todayLow.innerHTML = Math.round(fahrenheitTodayLow);
+  let dayOneHigh = document.querySelector("#day-one-high");
+  let fahrenheitDayOneHigh = (celsiusDayOneHigh * 9) / 5 + 32;
+  dayOneHigh.innerHTML = Math.round(fahrenheitDayOneHigh);
 }
 function changeCelsius() {
-  let currentTemp = document.querySelector(".current-temp");
+  let unit = document.querySelectorAll(".unit");
 
+  let i;
+  for (i = 0; i < unit.length; i++) {
+    unit[i].innerHTML = ` °C`;
+  }
+  let currentTemp = document.querySelector(".current-temp");
   currentTemp.innerHTML = Math.round(celsiusTemp);
+  let todayHigh = document.querySelector("#today-high");
+  todayHigh.innerHTML = Math.round(celsiusTodayHigh);
+  let todayLow = document.querySelector("#today-low");
+  todayLow.innerHTML = Math.round(celsiusTodayLow);
 }
 function showCurrentWeather(response) {
   console.log(response);
@@ -283,9 +280,11 @@ function showWeatherForecast(response) {
   let todayWeatherDescription = response.data.daily[0].weather[0].description;
   let todayDescription = document.querySelector("#today-description");
   todayDescription.innerHTML = `${todayWeatherDescription}`;
+  celsiusTodayHigh = response.data.daily[0].temp.max;
   let todayHighTemp = Math.round(response.data.daily[0].temp.max);
   let todayHigh = document.querySelector("#today-high");
   todayHigh.innerHTML = `${todayHighTemp}`;
+  celsiusTodayLow = response.data.daily[0].temp.min;
   let todayLowTemp = Math.round(response.data.daily[0].temp.min);
   let todayLow = document.querySelector("#today-low");
   todayLow.innerHTML = `${todayLowTemp}`;
@@ -311,7 +310,7 @@ function showWeatherForecast(response) {
   let minutesSunset = addZero(timeSunset.getMinutes());
   let todaySunsetTime = document.querySelector("#today-sunset");
   todaySunsetTime.innerHTML = `${hoursSunset}:${minutesSunset}`;
-
+  celsiusDayOneHigh = response.data.daily[1].temp.max;
   let dayOneHighTemp = Math.round(response.data.daily[1].temp.max);
   let dayOneHigh = document.querySelector("#day-one-high");
   dayOneHigh.innerHTML = `${dayOneHighTemp}`;
@@ -931,6 +930,9 @@ function getCoords() {
   navigator.geolocation.getCurrentPosition(getLocation);
 }
 let celsiusTemp = null;
+let celsiusTodayHigh = null;
+let celsiusTodayLow = null;
+let celsiusDayOneHigh = null;
 
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = formatDate(new Date());
