@@ -106,65 +106,45 @@ function changePhotoDefault(event) {
   document.getElementById("photo").src = "images/sky.jpg";
 }
 function changeFahrenheit() {
-  units = "imperial";
-  let unit = document.querySelector(".unit");
-  unit.innerHTML = ` °F`;
-  let todayLowUnit = document.querySelector("#today-low-unit");
-  todayLowUnit.innerHTML = ` °F`;
-  let todayHighUnit = document.querySelector("#today-high-unit");
-  todayHighUnit.innerHTML = ` °F`;
-  let dayOneUnit = document.querySelector("#day-one-unit");
-  dayOneUnit.innerHTML = ` °F`;
-  let dayTwoUnit = document.querySelector("#day-two-unit");
-  dayTwoUnit.innerHTML = ` °F`;
-  let dayThreeUnit = document.querySelector("#day-three-unit");
-  dayThreeUnit.innerHTML = ` °F`;
-  let dayFourUnit = document.querySelector("#day-four-unit");
-  dayFourUnit.innerHTML = ` °F`;
-  let dayFiveUnit = document.querySelector("#day-five-unit");
-  dayFiveUnit.innerHTML = ` °F`;
-  let location = document.querySelector("#location-search").value;
-  if (location.length > 0) {
-    document.querySelector("#search-button").click();
-  } else {
-    document.querySelector("#current-location").click();
-  }
-  let speedUnit = document.querySelector("#speed-unit");
-  speedUnit.innerHTML = `mph`;
-  let feelsLikeUnit = document.querySelector("#feels-like-unit");
-  feelsLikeUnit.innerHTML = ` °F`;
+  //let unit = document.querySelectorAll(".unit");
+  //foreach((unit.innerHTML = ` °F`));
+  let currentTemp = document.querySelector(".current-temp");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  currentTemp.innerHTML = Math.round(fahrenheitTemp);
+  //temp.innerHTML = `${currentTemp}`;
+  // let todayLowUnit = document.querySelector("#today-low-unit");
+  //todayLowUnit.innerHTML = ` °F`;
+  //let todayHighUnit = document.querySelector("#today-high-unit");
+  //todayHighUnit.innerHTML = ` °F`;
+  //let dayOneUnit = document.querySelector("#day-one-unit");
+  //dayOneUnit.innerHTML = ` °F`;
+  //let dayTwoUnit = document.querySelector("#day-two-unit");
+  //dayTwoUnit.innerHTML = ` °F`;
+  //let dayThreeUnit = document.querySelector("#day-three-unit");
+  //dayThreeUnit.innerHTML = ` °F`;
+  //let dayFourUnit = document.querySelector("#day-four-unit");
+  //dayFourUnit.innerHTML = ` °F`;
+  //let dayFiveUnit = document.querySelector("#day-five-unit");
+  //dayFiveUnit.innerHTML = ` °F`;
+  //let location = document.querySelector("#location-search").value;
+  //if (location.length > 0) {
+  //document.querySelector("#search-button").click();
+  //} else {
+  //document.querySelector("#current-location").click();
+  //}
+  //let speedUnit = document.querySelector("#speed-unit");
+  //speedUnit.innerHTML = `mph`;
+  //let feelsLikeUnit = document.querySelector("#feels-like-unit");
+  //feelsLikeUnit.innerHTML = ` °F`;
 }
 function changeCelsius() {
-  units = "metric";
-  let unit = document.querySelector(".unit");
-  unit.innerHTML = ` °C`;
-  let todayLowUnit = document.querySelector("#today-low-unit");
-  todayLowUnit.innerHTML = ` °C`;
-  let todayHighUnit = document.querySelector("#today-high-unit");
-  todayHighUnit.innerHTML = ` °C`;
-  let dayOneUnit = document.querySelector("#day-one-unit");
-  dayOneUnit.innerHTML = ` °C`;
-  let dayTwoUnit = document.querySelector("#day-two-unit");
-  dayTwoUnit.innerHTML = ` °C`;
-  let dayThreeUnit = document.querySelector("#day-three-unit");
-  dayThreeUnit.innerHTML = ` °C`;
-  let dayFourUnit = document.querySelector("#day-four-unit");
-  dayFourUnit.innerHTML = ` °C`;
-  let dayFiveUnit = document.querySelector("#day-five-unit");
-  dayFiveUnit.innerHTML = ` °C`;
-  let location = document.querySelector("#location-search").value;
-  if (location.length > 0) {
-    document.querySelector("#search-button").click();
-  } else {
-    document.querySelector("#current-location").click();
-  }
-  let speedUnit = document.querySelector("#speed-unit");
-  speedUnit.innerHTML = `m/s`;
-  let feelsLikeUnit = document.querySelector("#feels-like-unit");
-  feelsLikeUnit.innerHTML = ` °C`;
+  let currentTemp = document.querySelector(".current-temp");
+
+  currentTemp.innerHTML = Math.round(celsiusTemp);
 }
 function showCurrentWeather(response) {
   console.log(response);
+  celsiusTemp = response.data.main.temp;
   let currentTemp = Math.round(response.data.main.temp);
   let temp = document.querySelector(".current-temp");
   let currentWeatherDescription = response.data.weather[0].description;
@@ -950,6 +930,7 @@ function getCoords() {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getLocation);
 }
+let celsiusTemp = null;
 
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = formatDate(new Date());
